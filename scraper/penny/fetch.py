@@ -18,7 +18,7 @@ def catalog_filename(week, year):
     return f"data/penny/penny_KW{week:02d}_{year}.pdf"
 
 def catalog_url(week, year):
-    return "https://files.rewe.co.at/PennyIntLeaflet/RO/Pliant_National_KW{week:02d}_{year}/files/assets/common/downloads/Pliant%20National.pdf"
+    return f"https://files.rewe.co.at/PennyIntLeaflet/RO/Pliant_National_KW{week:02d}_{year}/files/assets/common/downloads/Pliant%20National.pdf"
 
 
 def catalog_exists(week, year):
