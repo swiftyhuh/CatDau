@@ -1,6 +1,7 @@
 from datetime import date
 import requests
 import os
+import pdfplumber
 
 todayWeek = date.today().isocalendar().week
 todayYear = date.today().isocalendar().year
@@ -27,6 +28,14 @@ def catalog_exists(week, year):
     file_path = catalog_filename(week, year)
     return os.path.exists(file_path)
 
+def pages_dir(week, year):
+    return os.path.join(catalog_dir(week,year),"pages")
+
+def pages_exists(week, year):
+    return os.path.exists(os.path.join(pages_dir(week, year), "page_01.png"))
+
+
+
 def download_catalog(week, year):
     URL = catalog_url(week, year)
     resp = requests.get(URL)
@@ -38,11 +47,21 @@ def download_catalog(week, year):
     else:
         print("url failed")
 
-
+def pages_to_image(week, year):
+    if pages_exists(week,year):
+        print("pages already converted")
+    else:
+        with pdfplumber.open(catalog_filename(week,year)) as pdf:
+            os.makedirs(pages_dir(week,year), exist_ok=True)
+            for i, page in enumerate(pdf.pages, start=1):
+                im = page.to_image(resolution=150)
+                path = os.path.join(pages_dir(week,year), f"page_{i:02d}.png")
+                im.save(path)
 
         
 if not catalog_exists(todayWeek, todayYear):
     download_catalog(todayWeek, todayYear)
+pages_to_image(todayWeek,todayYear)
 
 # file_path = f"data/penny/penny_KW{todayWeek}_{todayYear}.pdf"
 # if os.path.exists(file_path):
