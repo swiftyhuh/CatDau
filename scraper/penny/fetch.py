@@ -5,7 +5,7 @@ import os
 todayWeek = date.today().isocalendar().week
 todayYear = date.today().isocalendar().year
 
-dURL = "https://files.rewe.co.at/PennyIntLeaflet/RO/Pliant_National_KW34_2026/files/assets/common/downloads/Pliant%20National.pdf"
+dURL = "https://files.rewe.co.at/PennyIntLeaflet/RO/Pliant_National_KW36_2026/files/assets/common/downloads/Pliant%20National.pdf"
 
 # resp = requests.get(URL)
 # print(resp.status_code)
@@ -14,12 +14,14 @@ dURL = "https://files.rewe.co.at/PennyIntLeaflet/RO/Pliant_National_KW34_2026/fi
 # entries = os.listdir(curr_dir)
 # print(entries)
 
-def catalog_filename(week, year):
-    return f"data/penny/penny_KW{week:02d}_{year}.pdf"
-
 def catalog_url(week, year):
     return f"https://files.rewe.co.at/PennyIntLeaflet/RO/Pliant_National_KW{week:02d}_{year}/files/assets/common/downloads/Pliant%20National.pdf"
 
+def catalog_dir(week, year):
+    return f"data/penny/KW{week:02d}_{year}"
+
+def catalog_filename(week, year):
+    return os.path.join(catalog_dir(week,year), "catalog.pdf")
 
 def catalog_exists(week, year):
     file_path = catalog_filename(week, year)
@@ -29,11 +31,14 @@ def download_catalog(week, year):
     URL = catalog_url(week, year)
     resp = requests.get(URL)
     if resp.ok:
+        os.makedirs(catalog_dir(week, year), exist_ok=True)
         file_path = catalog_filename(week, year)
         with open(file_path, 'wb') as f:
             f.write(resp.content)
     else:
         print("url failed")
+
+
 
         
 if not catalog_exists(todayWeek, todayYear):
