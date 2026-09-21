@@ -3,17 +3,22 @@ import requests
 import os
 import pdfplumber
 
+# -=-=-=-=-=-=
+# current date
+# -=-=-=-=-=-=
+
 todayWeek = date.today().isocalendar().week
 todayYear = date.today().isocalendar().year
 
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# debug url (hardcoded to current catalog)
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 dURL = "https://files.rewe.co.at/PennyIntLeaflet/RO/Pliant_National_KW36_2026/files/assets/common/downloads/Pliant%20National.pdf"
 
-# resp = requests.get(URL)
-# print(resp.status_code)
-
-# curr_dir = os.getcwd()
-# entries = os.listdir(curr_dir)
-# print(entries)
+# -=-=-=-
+# HELPERS
+# -=-=-=-
 
 def catalog_url(week, year):
     return f"https://files.rewe.co.at/PennyIntLeaflet/RO/Pliant_National_KW{week:02d}_{year}/files/assets/common/downloads/Pliant%20National.pdf"
@@ -34,7 +39,9 @@ def pages_dir(week, year):
 def pages_exists(week, year):
     return os.path.exists(os.path.join(pages_dir(week, year), "page_01.png"))
 
-
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Downloading current week catalog
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 def download_catalog(week, year):
     URL = catalog_url(week, year)
@@ -47,6 +54,10 @@ def download_catalog(week, year):
     else:
         print("url failed")
 
+# -=-=-=-=-=-=-=-=-=-=-
+# convert pages to pngs
+# -=-=-=-=-=-=-=-=-=-=-
+
 def pages_to_image(week, year):
     if pages_exists(week,year):
         print("pages already converted")
@@ -58,13 +69,10 @@ def pages_to_image(week, year):
                 path = os.path.join(pages_dir(week,year), f"page_{i:02d}.png")
                 im.save(path)
 
-        
+# -=-=-=-=-=-=
+# running code
+# -=-=-=-=-=-=
+
 if not catalog_exists(todayWeek, todayYear):
     download_catalog(todayWeek, todayYear)
 pages_to_image(todayWeek,todayYear)
-
-# file_path = f"data/penny/penny_KW{todayWeek}_{todayYear}.pdf"
-# if os.path.exists(file_path):
-#     print("Bine coaie")
-# else:
-#     print("Nu-i bine coaie")

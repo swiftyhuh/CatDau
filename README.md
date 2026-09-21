@@ -24,4 +24,7 @@ Pentru aplicatia de mobil o sa folosesc Flutter. Ideea principala: iti faci list
 Hmmm, am ideea — i mean, si ala e un inceput, nu????
 O sa incep cu branding-ul, sa aleg un nume okay (eu zic ca CâtDau e decent, astept feedback tho), iar apoi ma apuc de scraping, asta imi propun chiar azi (si maine). 
 
+-- am amanat proiectul putin but rn avem functia ce da download la current week catalog si converteste fiecare pagina in png
+-- obiectivul urmator: ocr
+
 So, come back tomorrow to see if I really did it or if I'm too lazy.
