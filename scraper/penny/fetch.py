@@ -65,7 +65,7 @@ def pages_to_image(week, year):
         with pdfplumber.open(catalog_filename(week,year)) as pdf:
             os.makedirs(pages_dir(week,year), exist_ok=True)
             for i, page in enumerate(pdf.pages, start=1):
-                im = page.to_image(resolution=150)
+                im = page.to_image(resolution=500)
                 path = os.path.join(pages_dir(week,year), f"page_{i:02d}.png")
                 im.save(path)
 
@@ -73,6 +73,8 @@ def pages_to_image(week, year):
 # running code
 # -=-=-=-=-=-=
 
-if not catalog_exists(todayWeek, todayYear):
-    download_catalog(todayWeek, todayYear)
-pages_to_image(todayWeek,todayYear)
+
+if __name__ == "__main__":
+    if not catalog_exists(todayWeek, todayYear):
+        download_catalog(todayWeek, todayYear)
+    pages_to_image(todayWeek,todayYear)
