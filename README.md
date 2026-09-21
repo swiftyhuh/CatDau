@@ -27,4 +27,8 @@ O sa incep cu branding-ul, sa aleg un nume okay (eu zic ca CâtDau e decent, ast
 -- am amanat proiectul putin but rn avem functia ce da download la current week catalog si converteste fiecare pagina in png
 -- obiectivul urmator: ocr
 
+-- am amanat din nou proiectul sorry guys, updates: am rezolvat OCR, am incercat Laplacian, EAST ocr, am incercat sa ma joc cu saturatia and so on, dar nimic nu mergea cum am vrut.
+-- pana cand am dat de RapidOCR (thx to the indian guy & claude pt explicatii si searching)
+-- obiectivul urmator: parsing, din rezultatul de la OCR sa extrag si sa fac frumos liste sau dict idk vedem
+
 So, come back tomorrow to see if I really did it or if I'm too lazy.
