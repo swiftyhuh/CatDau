@@ -1,34 +1,32 @@
-# CâtDau - ce mai e si asta? ❓
+# CâtDau ❓
 
-Afla instant in ce supermarket iesi cel mai ieftin cu lista ta de cumparaturi, pe baza reducerilor din saptamana curenta (si a brandurilor tale preferate).
+Tells you which supermarket has the cheapest basket for your shopping list, based on this week's discounts and your preferred brands.
 
-# De unde a pornit ideea? 🤔
+# Why I'm building it 🤔
 
-Mereu, inainte sa plec la cumparaturi, stateam si ma uitam prin cataloagele de la supermarketurile din zona mea, pentru a vedea unde sunt cele mai bune oferte, astfel incat sa ies cu un cos cat mai ieftin.
+Before every shopping trip I'd go through the catalogs of the supermarkets near me to find the best deals and keep the total low. It took too long, so I decided to automate it.
 
-# Okay, si cine esti tu? 🤷‍♂️
+# About me 🤷‍♂️
 
-Eyo... chill, sunt un simplu student la FMI UBB Cluj, pasionat de scris cod si de gasit solutii pentru chestiile repetitive care imi mananca timp aiurea. Rasfoitul cataloagelor e super time-wasting, nu am facut pana acuma un mobile app, 1+1=2, asa ca am decis sa ma chinui singur (fara AI, bine... doar cu putin ajutor pt research, dar tot codul o sa fie scris de mine, promise 🤞) si sa automatizez acest proces. Sper sa-mi iasa.
+I'm a student at FMI UBB Cluj. I like writing code and automating repetitive tasks that waste my time. Flipping through catalogs is one of them, and I've never built a mobile app, so 1+1=2: I'm learning as I go. I'm writing the code myself, using AI only for research.
 
-Mai multe detalii despre mine poti gasi pe LinkedIn, GitHub sau Discord (o sa adaug linkuri cand termin de aranjat profilele, ca rn arata urat af, poate chiar o sa-mi fac un mic site, da chiar e o idee buna ngl...).
+You can find me on [GitHub](https://github.com/swiftyhuh) / [LinkedIn](https://www.linkedin.com/in/mihaisz/) / [Instagram](https://www.instagram.com/mihai.szabo.o/)
 
-# Bine, bine... si cum mai exact o sa faci asta? 🥱
+# How it works 🥱
 
-O sa iti zic super pe scurt (cand ma apuc serios de treaba o sa mai updatez acest README):
-Un cod mic in Python care descarca cataloagele disponibile online si extrage automat preturile, o baza de date (SQLite) pentru produse si preturi, iar toata informatia o sa fie servita printr-un API cu FastAPI. 
+A small Python script downloads the available catalogs and extracts the prices automatically. The products and prices go into a SQLite database, and a FastAPI backend serves them. The mobile app will be built with Flutter.
 
-Pentru aplicatia de mobil o sa folosesc Flutter. Ideea principala: iti faci lista in aplicatie (sau dai paste din Notes), iar pe baza reducerilor din magazinele din zona (momentan Profi si Penny), aplicatia iti spune exact unde iti iese cosul cel mai ieftin.
+The idea: you write your list in the app (or paste it from Notes), and the app tells you where your basket comes out cheapest. For now it covers Penny and Profi.
 
-# Si care este progresul actual? 🤗
+# Status 🤗
 
-Hmmm, am ideea — i mean, si ala e un inceput, nu????
-O sa incep cu branding-ul, sa aleg un nume okay (eu zic ca CâtDau e decent, astept feedback tho), iar apoi ma apuc de scraping, asta imi propun chiar azi (si maine). 
+- **Done:** downloading the current week's catalog and converting each page to PNG.
+- **Done:** OCR. I tried Tesseract, EAST, a Laplacian filter and saturation tweaks, but none of them worked the way I needed. [RapidOCR](https://github.com/RapidAI/RapidOCR) did, and Claude helped me understand it and research the options.
 
--- am amanat proiectul putin but rn avem functia ce da download la current week catalog si converteste fiecare pagina in png
--- obiectivul urmator: ocr
+# Roadmap 🗺️
 
--- am amanat din nou proiectul sorry guys, updates: am rezolvat OCR, am incercat Laplacian, EAST ocr, am incercat sa ma joc cu saturatia and so on, dar nimic nu mergea cum am vrut.
--- pana cand am dat de RapidOCR (thx to the indian guy & claude pt explicatii si searching)
--- obiectivul urmator: parsing, din rezultatul de la OCR sa extrag si sa fac frumos liste sau dict idk vedem
-
-So, come back tomorrow to see if I really did it or if I'm too lazy.
+1. Parse the OCR output into structured products and prices.
+2. Store them in SQLite.
+3. Serve the data through a FastAPI backend.
+4. Build the Flutter app: shopping list in, cheapest supermarket out.
+5. Add Profi alongside Penny.
